@@ -17,23 +17,113 @@
 	// function preload(){
 
 	// }
+	var direction= "right";
+	var bg ="white";
+
+	var moveX = 0;
+	var moveY = 50;
+	var speed = 3;
+
+	var chromy; 
 
 
+	var mazelvl = 1;
+
+
+	function preload(){
+
+		maze1 = loadImage("assignment/maze1.png"); 
+		maze2 = loadImage("assignment/maze2.png"); 
+		chromy = loadImage("assignment/chromy.png");
+
+
+	}
 	//Set up your canvas
 	function setup() {
 		createCanvas(windowWidth, windowHeight);
-
-	}
-
-
-	//Draw your story
-	function draw() {
+		imageMode(CENTER);
 
 	}
 
 	//add your functions
 
+	//Draw your story
+	function draw() {
 
+		background(bg);	
+
+		clear();
+
+		image(maze1, windowWidth/2, windowHeight/2);
+
+
+		if (direction == "up"){
+			moveY -=speed;
+		} else if (direction == "down"){
+			moveY+=speed;
+		} else if (direction == "left"){
+			moveX-=speed;
+		} else if (direction == "right"){
+			moveX+=speed;
+		}
+
+		if(moveX < 0){
+			moveX = windowWidth;
+		} else if(moveX > windowWidth){
+			moveX = 0;
+			mazelvl++;
+		} else if(moveY < 0){
+			moveY = windowHeight;
+		} else if (moveY > windowHeight){
+			moveY = 0;
+		}
+
+	//trying to figure out how to change the maze image form maze1 to maze2
+
+		if (mazelvl == 2){
+			draw == image(maze2);
+		} else if (mazelvl > 1)
+			draw == image(maze1 == 0);
+
+
+
+		image(chromy, moveX, moveY);
+
+	}
+
+
+	function keyPressed() {
+
+	//check the arrow keys for changes in the direction
+  if (keyCode === UP_ARROW) {
+    direction = "up";
+  } else if (keyCode === DOWN_ARROW) {
+    direction = "down";
+  } else if (keyCode === LEFT_ARROW){
+  	direction = "left";
+  } else if (keyCode === RIGHT_ARROW){
+  	direction = "right";
+  }
+
+  //check the shift key to switch the background color
+
+// 		if(moveX > windowWidth){
+//   			if(bg == "black"){
+//   			bg = "white";
+//   			} else if (bg=="white"){
+//   			bg = "black";
+//   	}
+//   }
+// }
+
+  if(keyCode === SHIFT){
+  	if(bg == "black"){
+  		bg = "white";1
+  	} else if (bg=="white"){
+  		bg = "black";
+  	}
+  }
+}
 
 
 	</script>
